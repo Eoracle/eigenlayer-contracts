@@ -52,7 +52,7 @@ library SlashingLib {
      * an incoming slashing request isn't rounded down to 0 and an operator is able to avoid slashing penalties.
      */
     function mulWadRoundUp(uint256 x, uint256 y) internal pure returns (uint256) {
-        return x.mulDiv(y, WAD, Math.Rounding.Up);
+        return x.mulDiv(y, WAD, Math.Rounding(1));
     }
 
     // GETTERS
@@ -179,6 +179,6 @@ library SlashingLib {
         uint256 newMaxMagnitude
     ) internal pure returns (uint256) {
         // round up mulDiv so we don't overslash
-        return operatorShares - operatorShares.mulDiv(newMaxMagnitude, prevMaxMagnitude, Math.Rounding.Up);
+        return operatorShares - operatorShares.mulDiv(newMaxMagnitude, prevMaxMagnitude, Math.Rounding(1));
     }
 }
